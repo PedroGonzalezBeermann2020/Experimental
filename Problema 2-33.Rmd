@@ -1,0 +1,47 @@
+---
+title: "Problema-Cap2-33"
+author: "Pedro González"
+date: "09/28/2021"
+output: html_document
+---
+
+## Problema 2-33
+
+La prueba actual de un solo disco se tarda 2 minutos. Se propone un nuevo método de prueba que consiste en medir solamente los radios 24 y 57,donde casi es seguro que estará el valor mínimo buscado. Si el método nuevo resulta igual de efectivo que el método actual se podrá reducir en 60% el tiempo de prueba. Se plantea un experimento donde se mide la densidad mínima de metal en 18 discos usando tanto el método actual como el método nuevo. Los resultados están ordenados horizontalmente por disco. Así 1.88 y 1.87 es el resultado para el primer disco con ambos métodos.
+
+## Datos
+```{r}
+metodo.actual<-c(1.88,1.84,1.83,1.90,2.19,1.89,2.27,2.03,1.96,1.98,2.00,1.92,1.83,1.94,1.94,1.95,1.93,2.01)
+metodo.nuevo<-c(1.87,1.90,1.85,1.88,2.18,1.87,2.23,1.97,2.00,1.98,1.99,1.89,1.78,1.92,2.02,2.00,1.95,2.05)
+
+```
+
+## Prueba t-pareada
+
+```{r}
+t.test(metodo.actual,metodo.nuevo,paired=TRUE)
+```
+
+```{r}
+df<-data.frame(Actual=metodo.actual,Nuevo=metodo.nuevo)
+
+df2<-stack(df)
+
+names(df2)=c("Y","Metodo")
+
+boxplot(Y~Metodo,data=df2,col=c("yellow","green"))
+
+```
+
+### Problema 2.34
+
+```{r}
+BolaX<-c(75,46,57,43,58,32,61,56,34,65)
+BolaY<-c(52,41,43,47,32,49,52,44,57,60)
+
+```
+
+```{r}
+t.test(BolaX,BolaY,paired=TRUE)
+```
+
